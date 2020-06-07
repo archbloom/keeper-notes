@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Keeper Notes</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'select2.min' %>
+    <%= javascript_include_tag 'select2.min' %>
+  </head>
+
+  <body>
+    <% if notice %>
+      <p class='alert alert-success'><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class='alert alert-danger'><%= alert %></p>
+    <% end %>
+
+    <nav class='navbar navbar-expand-sm navbar-light bg-light'>
+      <div class='container-fluid'>
+        <div class='navbar-header'>
+          <%= link_to 'Keeper-Notes', home_index_path, class: 'navbar-brand' %>
+        </div>
+        <ul class='navbar navbar-nav'>
+          <% if user_signed_in? %>
+            <li class='nav-item active'>
+              <a href='' class='nav-link'> Logged in as <strong><%= current_user.name.titleize %> (<%= current_user.email %>)</strong></a>
+            </li>
+            <li class='nav-item mr-auto'>
+              <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link'  %>
+            </li>
+          <% else %>
+            <li class='nav-item'>
+              <%= link_to 'Sign up', new_user_registration_path, class: 'navbar-link btn'  %> 
+            </li>
+            <li class='nav-item'>
+              <%= link_to 'Login', new_user_session_path, class: 'navbar-link btn'  %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+    <hr />
+    <div class='container'>
+      <%= yield %>
+    </div>
+  </body>
+</html>

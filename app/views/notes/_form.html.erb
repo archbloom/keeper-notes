@@ -1,0 +1,64 @@
+<%= form_for(note, class: "form") do |f| %>
+  <% if note.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h5><%= pluralize(note.errors.count, "error") %> prohibited this note from being saved:</h5>
+      <ul>
+      <% note.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control', required: :true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :content %>
+    <%= f.text_area :content, class: 'form-control', rows: "10", required: :true %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag :tags, "Select Tags" %>
+    <%= select_tag :tags, options_from_collection_for_select(@tags, "name", "name", @note_tags), class: "form-control tags", multiple: true %>
+    <%= hidden_field_tag :remove_tags %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "save", class: "btn btn-info" %>
+  </div>
+<% end %>
+<%= javascript_tag do %>
+  $(document).ready(function() {
+    var removed_tags = [];
+    var $form;
+    if($('.edit_note').length >0) {
+      $form = $('.edit_note');
+    } else {
+      $form = $('.new_note');
+    }
+    $('.tags').select2({
+      tags: true,
+      multiple: true,
+      tokenSeparators: [',', ' '],
+      createTag: function (params) {
+        var term = $.trim(params.term);
+        if (term === '') {
+          return null;
+        }
+        return {
+          id: term,
+          text: term,
+          newTag: true // add additional parameters
+        }
+      },
+    }).on('select2:unselecting', function(e) {
+      removed_tags.push(e.params.args.data.text);
+    });
+    $form.on('submit', function(e){
+      $('#remove_tags').val(removed_tags);
+    });
+  });
+<% end %>
