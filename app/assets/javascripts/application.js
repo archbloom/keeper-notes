@@ -16,3 +16,10 @@
 //= require select2-full
 //= require turbolinks
 //= require_tree .
+
+setTimeout(function(){
+  $(".alert").fadeTo(500,0,function(){
+    $(this).remove()
+  })
+  },
+5000);

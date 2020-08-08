@@ -17,7 +17,7 @@ class NotesController < ApplicationController
   #
   def index
     @notes = current_user.notes
-    @shared_notes = Note.with_roles(%i[owner collaborator reader], current_user).distinct
+    @shared_notes = Note.with_roles(%i[collaborator reader], current_user).distinct
     respond_with(notes: @notes, shared_notes: @shared_notes)
   end
 
