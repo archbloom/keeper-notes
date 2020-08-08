@@ -41,9 +41,7 @@
     <tbody>
       <% @users.each_with_index do |user, index| %>
         <%= form_tag '/share', class: 'form', method: :post do %>
-          <% if (current_user == user) || user == @note.user %>
-            <% next %>
-          <% end %>
+          <% next if (current_user == user) || user == @note.user %>
           <tr>
             <td><%= index + 1 %></td>
             <td><%= user.name.titleize %> (<%= user.email %>)</td>
@@ -56,7 +54,7 @@
             <td>
               <% if current_user.has_role?(:owner, @note) && (user.has_role?(:reader, @note) || user.has_role?(:collaborator, @note)) %>
                 <%= submit_tag 'Revoke', class: 'btn btn-danger' %>
-                <% else %>
+              <% else %>
                 <%= submit_tag 'Share', class: 'btn btn-success btn-sm' %>
               <% end %>
             </td>
