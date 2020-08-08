@@ -9,7 +9,7 @@ gem 'devise'
 gem 'cancancan'
 gem 'rolify'
 gem "select2-rails"
-gem 'bootstrap', '~> 4.0.0'
+gem 'bootstrap', '~> 4.3.1'
 gem 'simple_token_authentication', '~> 1.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
