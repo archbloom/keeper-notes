@@ -1,19 +1,24 @@
 <h3 class='text-center mt-1'><%= tab_header %></h3>
-<div class='card-columns'>
+
+<div class='row'>
   <% notes.each do |note| %>
-      <div class='card'>
+    <div class='col-md-4'>
+      <div class='card mt-1'>
         <%= link_to note, title: "by #{note.user.email}", class: 'text-decoration-none' do %>
           <div class='card-header'>
             <span class='d-inline-block text-truncate' style="max-width: 250px;"><%= note.title.titleize %></span><br />
             Updated at <%= note.updated_at.in_time_zone('Mumbai').strftime("%b %d, %Y at %I:%M %p") %>
           </div>
         <% end %>
-        <div class='card-body'><%= note.content %></div> 
+        <div class='card-body text-truncate'>
+          <span title="<%= note.content %>"><%= note.content %></span>
+        </div>
         <div class='card-footer'>
           <% note.tags.each do |tag| %>
             <span class="badge badge-info"><%= tag.name %></span>
           <% end %><br />
         </div>
       </div>
+    </div>
   <% end %>
 </div>
