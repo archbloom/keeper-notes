@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require popper
 //= require bootstrap
 //= require select2-full
 //= require turbolinks
@@ -23,3 +24,7 @@ setTimeout(function(){
   })
   },
 5000);
+
+$(function(){
+  $('[data-toggle="popover"]').popover();
+});
