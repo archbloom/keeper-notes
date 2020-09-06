@@ -2,8 +2,8 @@
 
 <div class='row'>
   <% notes.each do |note| %>
-    <div class='col-md-4'>
-      <div class='card mt-1'>
+    <div class='col-md-4 p-2'>
+      <div class='card'>
         <%= link_to note, title: "by #{note.user.email}", class: 'text-decoration-none' do %>
           <div class='card-header'>
             <span class='d-inline-block text-truncate' style="max-width: 250px;"><%= note.title.titleize %></span><br />
@@ -11,11 +11,14 @@
           </div>
         <% end %>
         <div class='card-body text-truncate'>
-          <span title="<%= note.content %>"><%= note.content %></span>
+          <% content = note.content %>
+          <a href='javascript:;' class='card-link' data-toggle='popover' data-trigger='hover' data-content="<%= content %>">
+            <span class='text-muted'><%= content %></span>
+          </a>
         </div>
         <div class='card-footer'>
           <% note.tags.each do |tag| %>
-            <span class="badge badge-info"><%= tag.name %></span>
+            <span class='badge badge-info'><%= tag.name %></span>
           <% end %><br />
         </div>
       </div>
