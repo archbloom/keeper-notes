@@ -4,7 +4,7 @@
   <% notes.each do |note| %>
     <div class='col-md-4 p-2'>
       <div class='card'>
-        <%= link_to note, title: "by #{note.user.email}", class: 'text-decoration-none' do %>
+        <%= link_to note, title: "by #{note.user.email}", class: 'text-decoration-none', data: { turbolinks: false } do %>
           <div class='card-header'>
             <span class='d-inline-block text-truncate' style="max-width: 250px;"><%= note.title.titleize %></span><br />
             Updated at <%= note.updated_at.in_time_zone('Mumbai').strftime("%b %d, %Y at %I:%M %p") %>
