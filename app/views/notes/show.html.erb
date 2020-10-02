@@ -40,12 +40,11 @@
     </thead>
     <tbody>
       <% @users.each_with_index do |user, index| %>
-        <%= form_tag '/share', class: 'form', method: :post do %>
+        <%= form_tag share_note_url(@note), class: 'form', method: :post do %>
           <% next if (current_user == user) || user == @note.user %>
           <tr>
             <td><%= index + 1 %></td>
             <td><%= user.name.titleize %> (<%= user.email %>)</td>
-            <%= hidden_field_tag :id, @note.id %>
             <%= hidden_field_tag :user, user.id %>
             <td>
               <span class='mr-2'>Reader: <%= check_box_tag :reader, true, user.has_role?(:reader, @note) %></span>
