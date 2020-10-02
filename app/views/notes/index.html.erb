@@ -1,16 +1,24 @@
-<ul class='nav nav-tabs mr-auto'>
-  <li class='nav-item'>
-    <a class='nav-link active' data-toggle='tab' href='#home'>My notes</a>
-  </li>
-  <li class='nav-item'>
-    <a class='nav-link' data-toggle='tab' href='#shared'>Shared with me</a>
-  </li>
-</ul>
+<div class='row'>
+  <div class="col-md-10">
+    <ul class='nav nav-tabs mr-auto'>
+      <li class='nav-item'>
+        <a class='nav-link active' data-toggle='tab' href='#home'>My notes</a>
+      </li>
+      <li class='nav-item'>
+        <a class='nav-link' data-toggle='tab' href='#shared'>Shared with me</a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-2 text-right">
+    <div class="btn-group">
+      <%= link_to 'New Note', new_note_path, class: 'btn btn-primary ml-1' %>
+    </div>
+  </div>
+</div>
 
 <div class='tab-content col-md-12'>
   <div class='tab-pane active container' id='home'>
     <%= render 'notes', notes: @notes, tab_header: 'My Notes' %>
-    <%= link_to 'New Note', new_note_path, class: 'btn btn-primary mt-2' %>
   </div>
 
   <div class='tab-pane container' id='shared'>
