@@ -18,13 +18,15 @@
 //= require turbolinks
 //= require_tree .
 
-setTimeout(function(){
-  $(".alert").fadeTo(500,0,function(){
-    $(this).remove()
-  })
-  },
-5000);
+$(document).on('turbolinks:load', function() {
+  setTimeout(function(){
+    $(".alert").fadeTo(500,0,function(){
+      $(this).remove()
+    })
+    },
+  5000);
 
-$(function(){
-  $('[data-toggle="popover"]').popover();
+  $(function(){
+    $('[data-toggle="popover"]').popover();
+  });
 });
