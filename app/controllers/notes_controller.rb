@@ -118,6 +118,17 @@ class NotesController < ApplicationController
     respond_with @note
   end
 
+  #
+  # POST export
+  #   params: { id: note_id }
+  #
+  # @return [204] No content
+  #
+  def export
+    
+  end
+  
+
   private
 
   def note_params
