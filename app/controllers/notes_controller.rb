@@ -120,12 +120,13 @@ class NotesController < ApplicationController
 
   #
   # POST export
-  #   params: { id: note_id }
   #
   # @return [204] No content
   #
   def export
-    
+    ExportNotesWorker.perform_async(current_user.id)
+    flash[:notice] = 'Export is successfully scheduled. And file will be deleted after 24 hours'
+    redirect_to home_index_path
   end
   
 

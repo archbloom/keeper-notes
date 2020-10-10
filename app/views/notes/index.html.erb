@@ -12,6 +12,7 @@
   <div class="col-md-2 text-right">
     <div class="btn-group">
       <%= link_to 'New Note', new_note_path, class: 'btn btn-primary ml-1' %>
+      <%= link_to 'Export', export_notes_path, class: 'btn btn-primary ml-1', method: :post, format: :json %>
     </div>
   </div>
 </div>

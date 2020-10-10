@@ -41,7 +41,7 @@
     <tbody>
       <% @users.each_with_index do |user, index| %>
         <%= form_tag share_note_url(@note), class: 'form', method: :post do %>
-          <% next if (current_user == user) || user == @note.user %>
+          <% next if (current_user == user || user == @note.user) %>
           <tr>
             <td><%= index + 1 %></td>
             <td><%= user.name.titleize %> (<%= user.email %>)</td>

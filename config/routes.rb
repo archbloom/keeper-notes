@@ -9,7 +9,6 @@ Rails.application.routes.draw do
     end
 
     collection do
-      post :share
       post :export
     end
   end
