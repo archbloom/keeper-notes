@@ -17,4 +17,17 @@ class User < ApplicationRecord
   has_many :notes
 
   validates :name, presence: true
+
+  after_create :create_export_folder
+
+  private
+
+  #
+  # This folder will store the exports for the user
+  # The exports will be create by: ExportNotesWorker
+  # And will be deleted after 24 hours by: ExportFileDeletionWorker
+  #
+  def create_export_folder
+    Dir.mkdir("#{Rails.root}/public/#{id.to_s}") unless Dir.exists?("#{Rails.root}/public/#{id.to_s}")
+  end
 end

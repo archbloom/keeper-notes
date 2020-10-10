@@ -49,4 +49,12 @@ class Note < ApplicationRecord
       self.tags.delete(obj_tag) if self.tags.include?(obj_tag)
     end
   end
+
+  def readers
+    roles.find_by(name: 'reader').users.map { |user| "#{user.name.titleize}(#{user.id})" } rescue ''
+  end
+
+  def collaborators
+    roles.find_by(name: 'collaborator').users.map { |user| "#{user.name.titleize}(#{user.id})" } rescue ''
+  end
 end

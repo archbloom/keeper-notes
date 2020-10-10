@@ -1,3 +1,4 @@
+require'sidekiq/web'
 Rails.application.routes.draw do
   root 'home#index'
   get 'home/index'
@@ -6,8 +7,14 @@ Rails.application.routes.draw do
     member do
       post :share
     end
-  end
 
+    collection do
+      post :export
+    end
+  end
+  authenticate :user, lambda { |u| u.present? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
