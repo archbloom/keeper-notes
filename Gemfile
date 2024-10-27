@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+ruby '3.1.4'
+
 gem 'devise'
 gem 'cancancan'
 gem 'rolify'
@@ -13,7 +15,7 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'simple_token_authentication', '~> 1.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.7', '>= 5.0.7.2'
+gem 'rails', "~> 6.1.7", ">= 6.1.7.4"
 
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
@@ -59,7 +61,7 @@ end
 
 group :development do
   # Use sqlite3 as the database for Active Record
-  gem 'sqlite3', '~> 1.3.6'
+  gem 'sqlite3', '~> 1.4'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
